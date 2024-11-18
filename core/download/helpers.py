@@ -66,12 +66,6 @@ def process_proxy_list(proxy_list, proxy_type):
     for item in unique_proxy_list:
         processed_proxies.append({'https': f'{proxy_type}://{item}'})
 
-#       elif proxy_without_country.startswith(proxy_type):
-#           processed_proxies.append({'https': proxy_without_country})
-#       else:
-#           processed_proxies.append(
-#               {'https': f'{proxy_type}://{proxy_without_country}'})
-
     # Deduplication of proxy servers
     return processed_proxies
 
@@ -79,26 +73,26 @@ def process_proxy_list(proxy_list, proxy_type):
 def get_all_proxies():
     all_proxies = []
 
-#   socks5_proxy_list = get_proxies_from_api(SOCKS5_PROXY_TXT_API)  # do not fetch list from web
-    socks5_proxy_list = []
+    socks5_proxy_list = get_proxies_from_api(SOCKS5_PROXY_TXT_API)  # fetch list from web, comment this one for only local
+    # socks5_proxy_list = []                                        # uncomment this one for only local
     f = open( 'socks5_proxy_list.txt', 'r')                         # use local file
     for line in f:
-        socks5_proxy_list.append( line.rstrip('\r\n'))
+        socks5_proxy_list.append(line.rstrip('\r\n'))
     f.close()
-    logging.info('socks5_proxy_list: '+ str( len( socks5_proxy_list)))
+    logging.info('socks5_proxy_list: '+ str(len( socks5_proxy_list)))
     all_proxies.extend(process_proxy_list(socks5_proxy_list, 'socks5'))
     logging.info('number of all_proxies available: '+ str( len( all_proxies)))
     
-#   https_proxy_list = get_proxies_from_api(HTTPS_PROXY_TXT_API)    # do not fetch list from web
-    https_proxy_list = []
+    https_proxy_list = get_proxies_from_api(HTTPS_PROXY_TXT_API)    # fetch list from web, comment this one for only local
+    # https_proxy_list = []                                         # uncomment this one for only local
     f = open( 'https_proxy_list.txt', 'r')                          # use local file
     for line in f:
-        https_proxy_list.append( line.rstrip('\r\n'))
+        https_proxy_list.append(line.rstrip('\r\n'))
     f.close()
-    logging.info('https_proxy_list: '+ str( len( https_proxy_list)))
+    logging.info('https_proxy_list: '+ str(len(https_proxy_list)))
     all_proxies.extend(process_proxy_list(https_proxy_list, 'http'))
-    logging.info('number of all_proxies available: '+ str( len( all_proxies)))
- 
+    logging.info('number of all_proxies available: '+ str(len(all_proxies)))
+
     # Shuffle
     random.shuffle(all_proxies)
     return all_proxies
