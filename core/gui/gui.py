@@ -490,8 +490,8 @@ class Gui:
         # Set size policies for the table
         self.table.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.table.horizontalHeader().resizeSection(0,self.table.horizontalHeader().sectionSize(0)+400)
-        self.table.horizontalHeader().resizeSection(3,self.table.horizontalHeader().sectionSize(3)+120)
         self.table.horizontalHeader().resizeSection(2,self.table.horizontalHeader().sectionSize(2)+30)
+        self.table.horizontalHeader().resizeSection(3,self.table.horizontalHeader().sectionSize(3)-20)
 
         # Create a loading overlay widget
         self.main.loading_overlay = QWidget(self.main)

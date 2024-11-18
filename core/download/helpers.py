@@ -73,8 +73,8 @@ def process_proxy_list(proxy_list, proxy_type):
 def get_all_proxies():
     all_proxies = []
 
-    socks5_proxy_list = get_proxies_from_api(SOCKS5_PROXY_TXT_API)  # fetch list from web, comment this one for only local
-    # socks5_proxy_list = []                                        # uncomment this one for only local
+#   socks5_proxy_list = get_proxies_from_api(SOCKS5_PROXY_TXT_API)  # fetch list from web, comment this one for only local
+    socks5_proxy_list = []                                          # uncomment this one for only local
     f = open( 'socks5_proxy_list.txt', 'r')                         # use local file
     for line in f:
         socks5_proxy_list.append(line.rstrip('\r\n'))
@@ -83,8 +83,8 @@ def get_all_proxies():
     all_proxies.extend(process_proxy_list(socks5_proxy_list, 'socks5'))
     logging.info('number of all_proxies available: '+ str( len( all_proxies)))
     
-    https_proxy_list = get_proxies_from_api(HTTPS_PROXY_TXT_API)    # fetch list from web, comment this one for only local
-    # https_proxy_list = []                                         # uncomment this one for only local
+#   https_proxy_list = get_proxies_from_api(HTTPS_PROXY_TXT_API)    # fetch list from web, comment this one for only local
+    https_proxy_list = []                                           # uncomment this one for only local
     f = open( 'https_proxy_list.txt', 'r')                          # use local file
     for line in f:
         https_proxy_list.append(line.rstrip('\r\n'))
