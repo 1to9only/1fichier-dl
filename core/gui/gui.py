@@ -361,7 +361,7 @@ class GuiBehavior:
 class Gui:
     def __init__(self):
         # Init GuiBehavior()
-        self.app_name = '1Fichier Downloader v2.0.0'
+        self.app_name = '1Fichier Downloader v2.1.0'
         self.font = None
 
         # Create App
@@ -440,6 +440,7 @@ class Gui:
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.setSortingEnabled(True)
         self.table.verticalHeader().hide()
+
         if self.font:
             self.table.setFont(self.font)
 
